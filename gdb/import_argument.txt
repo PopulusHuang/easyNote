@@ -1,0 +1,3 @@
+entry gdb and use the 'run' command to import the argument.
+eg.
+(gdb)run arg1 arg2 
