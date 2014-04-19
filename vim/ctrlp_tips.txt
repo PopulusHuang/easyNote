@@ -1,0 +1,76 @@
+1. 快捷键:ctrl+p
+
+    F5刷新窗口
+    ctrl+r 正则表达式模式（可以使用正则表达式搜索）
+    ctrl+d 搜索只匹配文件名，忽略目录
+    ctrl+j 窗口中向下移动
+    ctrl+k 窗口中向上移动
+    ctrl+t 开一个新标签页打开指向的文件
+    ctrl+v 当前窗口纵向分割打开指向文件
+    ctrl+x 当前窗口横向分割打开指向文件
+    ctrl+z 给多个文件进行标记（取消标记），通过ctrl+o打开标记的文件
+    ctrl+forctrl+b 切换模式，file模式就是默认模式，快速打开文件。buffers模式，快速打开缓冲区。mru files模式，快速打开最近打开的文件。
+    ctrl+y 在ctrlp窗口输入一个未被创建的文件名，再按该快捷键，可以在当前目录下创建一个新文件,或者输入不存在的目录以及该目录下的文件，这样会在当前目录下创建一个子目录和里面的文件。
+2. 官方文档
+MAPPINGS                                                       *ctrlp-mappings*
+
+                                                                *'ctrlp-<c-p>'*
+<c-p>
+   Default |Normal| mode mapping to open the CtrlP prompt in find file mode.
+
+----------------------------------------
+Once inside the prompt:~
+
+  <c-d>
+    Toggle between full-path search and filename only search.
+    Note: in filename mode, the prompt's base is '>d>' instead of '>>>'
+
+  <c-r>                                                    *'ctrlp-fullregexp'*
+    Toggle between the string mode and full regexp mode.
+    Note: in full regexp mode, the prompt's base is 'r>>' instead of '>>>'
+
+    See also: |input-formats| (guide) and |g:ctrlp_regexp_search| (option).
+
+  <c-f>, 'forward'
+  <c-up>
+    Scroll to the 'next' search mode in the sequence.
+
+  <c-b>, 'backward'
+  <c-down>
+    Scroll to the 'previous' search mode in the sequence.
+
+  <tab>                                                *'ctrlp-autocompletion'*
+    Auto-complete directory names under the current working directory inside
+    the prompt.
+
+  <s-tab>
+    Toggle the focus between the match window and the prompt.
+
+  <esc>,
+  <c-c>
+    Exit CtrlP.
+
+Moving:~
+
+  <c-j>,
+  <down>
+    Move selection down.
+
+  <c-k>,
+  <up>
+    Move selection up.
+
+  <c-a>
+    Move the cursor to the 'start' of the prompt.
+
+  <c-e>
+    Move the cursor to the 'end' of the prompt.
+
+  <c-h>,
+  <left>,
+  <c-^>
+    Move the cursor one character to the 'left'.
+
+  <c-l>,
+  <right>
+    Move the cursor one character to the 'right'.

@@ -1,0 +1,15 @@
+
+1. brightness adjust
+ add the follow to /etc/default/grub
+------------------------------------
+acpi_osi=Linux acpi_backlight=vendor
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=Linux acpi_backlight=vendor"
+------------------------------------
+
+2. save the brightness config
+
+open /etc/rc.local and add the below sentence before 'exit 0'
+
+---------------------------------------------------
+echo 0 >/sys/class/backlight/acpi_video0/brightness
+---------------------------------------------------

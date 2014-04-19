@@ -1,0 +1,89 @@
+配置和编译：此处为最简易的版本，disable掉了所有的扩展模块;
+
+　　[plain]
+
+　　./configure --prefix=/home/pub/johnny/network/install-php --host=mips-linux-gnu --datadir=/home/pub/johnny/network/install-php/data --disable-FEATURE --disable-all "CC=mips-linux-gnu-gcc -EL" "CFLAGS=-EL" "LDFLAGS=-EL"
+
+　　make
+
+　　make istall
+
+　　4、测试：
+
+　　1)、修改fastcgi.conf
+
+　　添加：
+
+　　[plain]
+
+　　fastcgi.server += (
+
+　　"/test.php" =>
+
+　　((
+
+　　"socket" => "/tmp/lighttpd.test.event.socket",
+
+　　"bin-path" => "/tmp/network/sbin/php-cgi",
+
+　　# "bin-path" => "/home/pub/johnny/network/install-php/bin/php-cgi",
+
+　　# "bin-path" => "/tmp/NMP/bin/test.php",
+
+　　"max-procs" => 1,
+
+　　# "host" => "127.0.0.1",
+
+　　# "port" => 8081,
+
+　　"check-local" => "disable",
+
+　　))
+
+　　)
+
+　　fastcgi.server += (
+
+　　"/test.php" =>
+
+　　((
+
+　　"socket" => "/tmp/lighttpd.test.event.socket",
+
+　　"bin-path" => "/tmp/network/sbin/php-cgi",
+
+　　# "bin-path" => "/home/pub/johnny/network/install-php/bin/php-cgi",
+
+　　# "bin-path" => "/tmp/NMP/bin/test.php",
+
+　　"max-procs" => 1,
+
+　　# "host" => "127.0.0.1",
+
+　　# "port" => 8081,
+
+　　"check-local" => "disable",
+
+　　))
+
+　　)
+
+　　2)、把/home/pub/johnny/network/install-php/bin/php-cgi copy 到开发板/tmp/network/sbin/php-cgi
+
+　　3)、在/tmp/network/webpages/下创建test.php
+
+　　[php]
+
+　　
+
+　　phpinfo();
+
+　　>
+
+　　phpinfo();
+
+　　>
+
+　　4)、开发板上启动lighttpd
+
+　　5)、在PC上输入http://192.168.*.*/test.php，则在浏览器上显示php的信息

@@ -1,0 +1,267 @@
+C
+Introduction to C Programming
+C Optimization Tutorial
+Compiling C and C++ Programs on UNIX Systems - gcc/g++
+Building and Using Static and Shared C Libraries
+Programming in C: UNIX System Calls and Subroutines Using C
+C FAQ
+C Programming Class Notes
+ANSI C for Programmers on UNIX Systems
+Sams Teach Yourself C in 24 Hours
+Sams Teach Yourself C in 21 Days (4th Ed.)
+The Standard C Library for Linux – Part 1: file functions
+The Standard C Library for Linux – Part 2: character input/output
+The Standard C Library for Linux – Part 3: formatted input/output
+The Standard C Library for Linux – Part 4: Character Handling
+The Standard C Library for Linux – Part 5: Miscellaneous Functions
+Programming in C: A Tutorial
+An Introduction to C Development on Linux
+C Programming Course
+C Language Tutorial
+CScene: An Online Magazine for C and C++ Programming
+
+C++
+C++ Tutorial
+Understanding C++: An Accelerated Introduction
+An Introduction to C++ Class Hierarchies
+G++ FAQ
+Introduction to Object-Oriented Programming Using C++
+Compiling C and C++ Programs on UNIX Systems – gcc/g++
+C++ FAQ Lite
+C++ Programming Language Tutorials
+Reducing Dependencies in C++
+C++ Exception Handling
+Part 1: Unicode
+Part 2: A Complete String Class
+Making C++ Loadable Modules Work
+Sams Teach Yourself C++ in 21 Days (2nd Ed.)
+C++ Portability Guide
+C++ Tips
+C++ Language Tutorial
+CScene: An Online Magazine for C and C++ Programming
+C++ Libraries FAQ
+
+CGI
+CGI Programming Tutorial
+CGI Programming 101
+CGI Manual of Style
+CGI Developer’s Guide
+CGI Programming Unleashed
+Sams Teach Yourself CGI Programming with Perl 5 in a Week (2nd Ed.)
+CGI/Perl Tips, Tricks and Hints
+A Tour of HTML Forms and CGI Scripts
+Reading CGI Data: URL-Encoding and the CGI Protocol
+CGI Programming FAQ
+
+CORBA
+CORBA FAQ
+A Brief Tutorial on CORBA
+CORBA 2.0 Specification
+CORBA Tutorials
+Sams Teach Yourself CORBA in 14 Days
+Linux Network Programming, Part 3 – CORBA: The Software Bus
+CORBA Program Development, Part 1
+CORBA Program Development, Part 2
+CORBA Program Development, Part 3
+
+CSS
+CSS2 Tutorial
+
+CVS
+CVS Tutorial
+Concurrent Version System Tutorial
+
+DHTML
+Introduction to Dynamic HTML
+
+Emacs
+Emacs: The Software Engineer’s “Swiss Army Knife”
+Emacs FAQ
+GNU Emacs Lisp Reference Manual
+Programming in Emacs Lisp
+GNU Emacs Manual
+A Tutorial Introduction to Emacs
+EMACSulation: Internet-ready!
+EMACSulation: Ediff – An Emacs interface to diff and patch
+EMACSulation: Emacs as a Server
+EMACSulation: Customizing Emacs
+Basic Emacs
+EMACSulation: Templating Mechanisms
+Emacs Macros and the Power-Macros Package
+Polyglot Emacs 20.4
+
+Expect
+Advanced Programming in Expect: A Bulletproof Interface
+Automating Tasks with Expect
+What Can you Expect?–A Data Collection Project Using Linux
+
+Fortran
+Professional Programmer’s Guide to Fortran 77
+Fortran 90 and Computational Science
+User Notes on Fortran Programming
+Fortran Programming for Physics and Astronomy
+A Fortran 90 Tutorial
+Using GNU Fortran
+Fortran 90: A Course for Fortran 77 Programmers
+Fortran 90 for the Fortran 77 Programmer
+Introduction to Fortran
+
+GIMP
+GIMP Tutorial Index
+A Tutorial for Perl GIMP Users
+A Scheme Tutorial for GIMP Users
+GIMP Guide
+The GIMP User Manual
+Pseudo 3-D with GIMP
+Graphical Photocomposition with GIMP
+Creating Text with the GIMP
+Creating Fire Effects with the GIMP
+Creating and Editing Animations with GIMP
+GIMP-Perl: GIMP Scripting for the Rest of Us
+Writing a GIMP Plugin
+GIMP: The RRU Tutorial
+GIMP User FAQ
+Script-Fu Tutorial
+The Quick Start Guide to the GIMP, Part 1
+The Quick Start Guide to the GIMP, Part 2
+The Quick Start Guide to the GIMP, Part 3
+The Quick Start Guide to the GIMP, Part 4
+
+GNOME
+Application Programming Using the GNOME Libraries
+Part 1: Everything You Need to Get Started
+Part 2: Building a Sample Genealogy Program
+Part 3: Adding File Saving and Loading Using libxml
+Creating GTK+ Widgets with GOB: An Easier Way to Derive New GTK+ Widgets
+Handling Multipel Documents: Using the GnomeMDI Framework
+Livening Things Up: Graphics Made Easy Using the GNOME Canvas
+Developing Gnome Applications with Python – Part 1
+
+GTK
+GDK Reference Manual
+GLib Reference Manual
+GTK+ Reference Manual
+The GIMP Toolkit
+GTK+ FAQ
+GTK V1.2 Tutorial
+Drawing and Event Handling in GTK
+An Introduction to the GIMP Tool Kit
+
+Gnuplot
+Constrained Dynamics
+Continuum Dynamics
+Differential Equation Basics
+Energy Functions and Stiffness
+Particle System Dynamics
+An Introduction to Physically Based Modeling
+Rigid Body Dynamics I
+Rigid Body Dynamics II
+Scientific Visualization Tutorials
+Gnuplot – An Interactive Plotting Program
+GIF Animation Tutorial
+
+HTML
+HTML Table Tutorial
+HTML by Example
+How to Use HTML 3.2
+Creating a Client-Side Image Map
+Advanced HTML: How to Create Complex Multimedia Documents for the Web
+The ABCs of HTML
+Sharky’s Netscape Frames Tutorial
+
+ILU
+ILU Reference Manual
+Using ILU with ANSI C: A Tutorial
+Using ILU with Java: A Tutorial
+Using ILU with Python: A Tutorial
+
+IP-Masquerading
+ipchains: Packet Filtering for Linux 2.2
+Setting Up IP Masquerade
+Setting Up IP-Masquerading
+Ipchains: Easy Links to the Net
+Linux Networking Using Ipchains
+
+IPC
+Advanced 4.4BSD Interpprocess Communication Tutorial
+UNIX Multi-Process Programming and IPC
+
+Java
+Enterprise JavaBeans Tutorial
+JavaBeans Short Course
+Introduction to the JavaBeans API
+JDBC Short Course
+Essentials of the Java Programming Language, Part 1
+Essentials of the Java Programming Language, Part 2
+Writing Advanced Applications for the Java Platform
+Fundamentals of Java Security
+Fundamentals of Java Servlets
+Introduction to the Collections Framework
+Introduction to CORBA
+Fundamentals of RMI
+Advanced
+Introductory
+Intermediate
+Java Language Specification
+Java Tutorial: Servlet Trail
+Java Virtual Machine Specification (2nd Ed.)
+Glossary of Java and Related Terms
+The Java Language Environment
+Java Look and Feel Design Guidelines
+Story of a Servlet: An Instant Tutorial
+Introduction to Java
+Java2D: An Introduction and Tutorial
+Java Servlet Tutorial
+comp.lang.java FAQ
+Brewing Java: A Tutorial
+Shlurrrppp … Java: The First User-Friendly Tutorial on Java
+Swing Tutorial
+Swing: A Quick Tutorial for AWT Programmers
+Thinking in Java
+Java RMI Tutorial
+Java for C++ Programmers
+The Advanced Jav/aJ2EE Tutorial
+Hacking Java: The Java Professional’s Resource Kit
+JFC Unleashed
+Java Developer’s Guide
+Java Developer’s Reference
+Sams Teach Yourself Java in 21 Days (Professional Reference Ed.)
+Java Unleashed (2nd Ed.)
+Java 1.1 Unleashed (3rd Ed.)
+Java Game Programming Tutorial
+Java Networking FAQ
+Java Tutorial: A Practical Guide for Programmers
+Sockets Programming in Java
+Programming with Java – Part I
+Programming with Java – Part II
+Setting Up a Java Development Environment for Linux
+Understanding Java
+Beginner’s Guide to JDK
+GUI Development in Java
+Java Servlets: An introduction to writing and running Java servlets on Linux
+
+JavaScript
+Introductory JavaScript Tutorials
+JavaScript Authoring Guide
+Client-Side JavaScript 1.3 Guide
+Client-Side JavaScript 1.3 Reference
+Core JavaScript 1.4 Guide
+Core JavaScript 1.4 Reference
+Server-Side JavaScript 1.4 Guide
+JavaScript FAQ
+JavaScript Tutorial
+The Way of JavaScript
+Voodoo’s Introduction to JavaScript
+JavaScript Tutorial for Programmers
+JavaScript Primer
+EchoEcho JavaScript Tutorial
+Sams Teach Yourself JavaScript 1.1 in a Week (2nd Ed.)
+
+Lisp
+Common Lisp Hints
+Common Lisp the Language (2nd Ed.)
+Lisp FAQ
+Lisp Programming Tutorial
+Lisp Tutorial
+LISP Tutorial
+Common Lisp HyperSpec 

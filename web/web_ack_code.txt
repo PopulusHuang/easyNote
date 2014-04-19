@@ -1,0 +1,9 @@
+404 - not found
+411 - login failure
+434 - requset SSL
+439 - user too many
+431 - refuse directory list
+417 – execute failure
+513 - server busy
+501 - unimplement
+

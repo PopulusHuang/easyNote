@@ -1,0 +1,3 @@
+helptags 'docpath'
+such as
+:helptags .vim/doc

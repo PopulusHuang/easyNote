@@ -1,0 +1,3 @@
+open task manager
+
+$ gnome-system-monitor

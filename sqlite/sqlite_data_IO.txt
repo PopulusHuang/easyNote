@@ -1,0 +1,68 @@
+导入
+命令: .import
+sqlite> .import 文件名 表名
+注1: 不要忘了开头的点
+注2: 这条语句不能用分号结束. 非SQL不需要分号结束.
+注3: 需要查看默认的分隔符separator. 必须一致. 如果不一致可能导致sqlite字段分割错误.
+查看分隔符使用命令 .show , 如果不一致可直接修改, 比如:
+sqlite>.separator ","
+将分隔符转为逗号.
+举例1:
+将文件a.txt中的数据导入表 tab_xx. (a.csv中字段以逗号分割)
+sqlite> .separator ","
+sqlite> .import a.txt tab_xx
+sqlite>
+导入结束.
+
+导出
+实现方式: 将输出重定向至文件.
+命令: .output
+sqlite> .output a.txt
+然后输入sql语句, 查询出要导的数据. 查询后,数据不会显示在屏幕上,而直接写入文件.
+结束后,输入
+sqlite> .output stdout
+将输出重定向至屏幕.
+举例2:
+将 tab_xx 中的数据导出到文件a.txt
+sqlite> .output a.txt
+sqlite> select * from tab_xx;
+sqlite> .output stdout
+导出完毕.
+
+如需导成csv格式，直接将文件a.txt换成a.csv即可
+
+Sqlite数据库导入导出与备份恢复作者
+（1）数据导入
+建立了Sqlite数据库后就要建立表输入数据了，多数时候数据量较大，手动输入不可能，必须用导入语句
+导入逗号分隔csv格式数据
+首先建立一个表，比如test.db中建表test，如果表已经存在，可以利用命令".schema"查看该表结构，比如
+sqlite>.schema test，结果得到test表的结构，因为要导入的数据必须具有相似的结构，所以必须明了目标表的结构。
+create table test (id int primary key,value);
+比如test表具有下面的数据
+1|34
+2|99
+3|990
+4|390
+
+另一个csv文本文件为 test.csv，内容如下：
+5,560
+6,78
+利用“.import”命令可以导入该数据，在导入数据之前，利用“.separator ''”命令转换sqlite默认分隔符，比如“.separator ,”这一句就将分隔符改变为逗号，与预导入数据一致才能顺利导入，然后键入下面语句
+.import test.csv test
+这样表test就多了从csv文件导入的两行记录，sqlite最新版本已经默认使用事件，因此海量数据导入也很轻松高效。
+同样的方法可以导入txt文本文件。
+
+（2）数据导出
+.out out.txt
+select * from test;
+.output stdout
+以上三个语句将表test的全部内容查询结果创建并导入了文件out.txt，最后一句是使输出重新定位到屏幕，结束文件导出。
+
+（3）备份数据库
+.output [filename] 导出到文件中,如果该文件不存在，则自动创建
+.dump 导出数据命令
+.output stdout 返回输出到屏幕(进行其他操作)
+
+（4）导入（恢复）数据库
+sqlite3 test.db < test.sql
+这样就将备份数据库导入当前数据库了。

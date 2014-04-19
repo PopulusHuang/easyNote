@@ -1,0 +1,102 @@
+clewn的主页：
+http://clewn.sourceforge.net/
+各种步骤在其主页上都有详细说明
+懒得看的往下看：
+
+1. 安装readline:
+注意，安装clewn依赖readline 缺少的去新立得里搜一下，libreadline5-dev
+或者直接在命令行下输入:
+> $ sudo apt-get install libreadline5-dev
+2. 安装clewn：
+大前提：有gvim，也就是vim-gnome， 还有dgb
+
+首先下载源代码，到他的主页上很容易找到，注意下载clewn而不是vimgdb。
+解压，进入目录应该都会吧
+然后是老一套
+
+> $ ./configure
+> $ make
+> $ sudo make install
+
+安装好后把相关的.vim文件复制到~/.vim下
+参考：
+
+>$ cp /usr/local/share/vim/vimfiles/clewn.vim ~/.vim/plugin/
+>$ cp /usr/local/share/vim/vimfiles/doc/clewn.txt ~/.vim/doc/
+>$ cp /usr/local/share/vim/vimfiles/macros/clewn_mappings.vim ~/.vim/macros/
+>$ cp /usr/local/share/vim/vimfiles/syntax/gdbvar.vim ~/.vim/syntax/
+
+注意：以上路径仅供参考，具体参照你的路径
+
+然后就搞定了，写一段程序测试一下：
+代码:
+
+|#include <stdio.h>
+|int main(int argc, char *argv[]) {
+|	int i;
+|	int s;
+|	s=0;
+|	for( i=0 ; i<10 ; ++i ) {
+|		s=s+1;
+|	}
+|}
+
+随便存一个名字，例如test.c
+然后：
+>$ gcc -g -o test test.c
+
+编译通过后：
+>$ clewn -va test.c
+然后你会看到终端自动打开了gdb，同时gvim也打开了。不要急，在终端(gdb)里输入file test
+(gdb)file test
+
+然后就可以在gvim里调试了
+可以不用输入gdb命令，直接在gvim里操作很方便
+例如：
+用鼠标点到你想设置断点的行（用光标移也可以，不过有时设置断点的时候会不灵），按下CTRL+B，不灵的话就多按几下，就设置好断点了。
+然后安SHIFT+r（就是R）就run了。当然，程序会在断点处停止
+继续安SHIFT+s（就是S）就step了。
+如果想看变量的话就在命令模式下输入：
+:split
+窗口就拆开了。
+然后用鼠标点中想要观察的变量（用光标移也可以，不过有时会不灵，汗！），按下CTRL+J，就会在另一个窗口里看到变量了，而且step的时候会自动更新还会高亮显示的。不灵的话就多按几次，再不灵的话就直接在终端(gdb)里输入
+(gdb)createvar yourvar
+其中，yourvar是你想要观察的变量。
+下面是默认的快捷键：摘录自官方文档
+代码:
+|List of default key mappings:
+|
+|CTRL-Z send an interrupt to GDB and the program it is running
+|B info breakpoints
+|L info locals
+|A info args
+|S step
+|I stepi
+|CTRL-N next: next source line, skipping all function calls
+|X nexti
+|F finish
+|R run
+|Q quit
+|C continue
+|W where
+|CTRL-U up: go up one frame
+|CTRL-D down: go down one frame
+|
+|cursor position: ~
+|CTRL-B set a breakpoint on the line where the cursor is located
+|CTRL-E clear all breakpoints on the line where the cursor is located
+|
+|mouse pointer position: ~
+|CTRL-P print the value of the variable defined by the mouse pointer
+|position
+|CTRL-X print the value that is referenced by the address whose
+|value is that of the variable defined by the mouse pointer
+|position
+|CTRL-K set a breakpoint at assembly address shown by mouse position
+|CTRL-H clear a breakpoint at assembly address shown by mouse position
+|CTRL-J add the selected variable at mouse position to the watched
+|variables window
+当然，你也可以自己修改你喜欢的热键，具体查看文档
+
+好了，基本就研究出这么多，如果想更详细深入的研究的华请看clewn的官方文档：
+http://clewn.sourceforge.net/doc.html 

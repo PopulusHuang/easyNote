@@ -1,0 +1,218 @@
+     连接 you essid name 网络
+
+# wpa_cli -i wlan0
+
+wpa_cli v1.0
+
+Copyright (c) 2004-2012, Jouni Malinen <j@w1.fi> and contributors
+
+
+This program is free software. You can distribute it and/or modify it
+
+under the terms of the GNU General Public License version 2.
+
+
+Alternatively, this software may be distributed under the terms of the
+
+BSD license. See README and COPYING for more details.
+
+
+
+
+Interactive mode
+
+
+> 
+
+连接后出现提示符>。
+
+> scan #扫描
+
+OK
+
+<3>CTRL-EVENT-SCAN-RESULTS
+
+<3>WPS-AP-AVAILABLE
+
+> scan_results #显示当前的网络连接
+
+bssid / frequency / signal level / flags / ssid
+
+38:83:45:9d:b2:84 2462 100 [WPA-PSK-TKIP+CCMP][WPA2-PSK-TKIP+CCMP][ESS] you essid name
+
+f8:d1:11:e3:65:1c 2427 43 [WPA-PSK-CCMP][WPA2-PSK-CCMP][WPS][ESS] Wudong
+
+00:1d:0f:82:20:f4 2437 26 [WPA-PSK-TKIP+CCMP][WPA2-PSK-TKIP+CCMP-preauth][ESS] HuntersHall
+
+> add_network #增加一个网络，并得到网络id
+
+0
+
+> set_network 0 ssid "you essid name" #设置网络id0的无线连接
+
+OK
+
+> set_network 0 psk "password" #设置网络id0的密码
+
+OK
+
+> enable_network 0 #激活网络id0
+
+OK
+
+<3>CTRL-EVENT-SCAN-RESULTS
+
+<3>WPS-AP-AVAILABLE
+
+<3>Trying to associate with 38:83:45:9d:b2:84 (SSID='you essid name' freq=2462 MHz)
+
+<3>Association request to the driver failed
+
+<3>Associated with 38:83:45:9d:b2:84
+
+<3>WPA: Key negotiation completed with 38:83:45:9d:b2:84 [PTK=CCMP GTK=TKIP]
+
+<3>CTRL-EVENT-CONNECTED - Connection to 38:83:45:9d:b2:84 completed (auth) [id=0 id_str=]
+
+> save #保存配置
+
+OK
+
+> status #查看状态
+
+bssid=38:83:45:9d:b2:84
+
+ssid=you essid name
+
+id=0
+
+mode=station
+
+pairwise_cipher=CCMP
+
+group_cipher=TKIP
+
+key_mgmt=WPA2-PSK
+
+wpa_state=COMPLETED
+
+address=14:cf:92:1b:23:bc
+
+> quit #退出
+
+
+目前网络已经连接上了。但发现没有，没有IP地址。怎么办呢？
+
+# ifconfig wlan0
+
+wlan0 Link encap:Ethernet HWaddr 14:cf:92:1b:23:bc
+
+UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+
+RX packets:477 errors:0 dropped:18573 overruns:0 frame:0
+
+TX packets:7 errors:0 dropped:0 overruns:0 carrier:0
+
+collisions:0 txqueuelen:1000
+
+RX bytes:280673 (274.0 KiB) TX bytes:4265 (4.1 KiB)
+
+
+    使用DHCP分配一个
+
+# dhclient wlan0
+
+
+# ifconfig wlan0
+
+wlan0 Link encap:Ethernet HWaddr 14:cf:92:1b:23:bc
+
+inet addr:192.168.1.114 Bcast:255.255.255.255 Mask:255.255.255.0
+
+UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+
+RX packets:507 errors:0 dropped:19093 overruns:0 frame:0
+
+TX packets:9 errors:0 dropped:0 overruns:0 carrier:0
+
+collisions:0 txqueuelen:1000
+
+RX bytes:292377 (285.5 KiB) TX bytes:5005 (4.8 KiB)
+
+看到IP地址了，说明连接成功了。
+
+
+    退出连接
+
+# wpa_cli -i wlan0
+
+wpa_cli v1.0
+
+Copyright (c) 2004-2012, Jouni Malinen <j@w1.fi> and contributors
+
+
+This program is free software. You can distribute it and/or modify it
+
+under the terms of the GNU General Public License version 2.
+
+
+Alternatively, this software may be distributed under the terms of the
+
+BSD license. See README and COPYING for more details.
+
+
+
+
+Interactive mode
+
+
+> disable_network 0 #关闭网络id0
+
+OK
+
+<3>CTRL-EVENT-DISCONNECTED bssid=00:00:00:00:00:00 reason=0
+
+<3>CTRL-EVENT-SCAN-RESULTS
+
+<3>WPS-AP-AVAILABLE
+
+> status
+
+wpa_state=INACTIVE
+
+ip_address=192.168.1.114
+
+address=14:cf:92:1b:23:bc
+
+> terminate #结束wpa_supplicant进程
+
+OK
+
+> 'PING' command failed.
+
+Connection to wpa_supplicant lost - trying to reconnect
+
+> quit #退出
+
+
+# iwconfig wlan0
+
+wlan0 unassociated Nickname:"<WIFI@REALTEK>"
+
+Mode:Managed Frequency=2.462 GHz Access Point: Not-Associated
+
+Sensitivity:0/0
+
+Retry:off RTS thr:off Fragment thr:off
+
+Encryption key:off
+
+Power Management:off
+
+Link Quality:0 Signal level:0 Noise level:0
+
+Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0
+
+Tx excessive retries:0 Invalid misc:0 Missed beacon:0
+
+已经停止。

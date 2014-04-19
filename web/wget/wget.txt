@@ -1,0 +1,38 @@
+因为内容其实并不多，所以我干脆直接上原文了。做为一个PHP（拍黄片）的User，抠模版实在太常见了，所以。。。。找啊找，想不到，工具原来一直就在我们身边
+原文地址：http://blog.chinaunix.net/uid-22780578-id-3346384.html
+ 
+1、Linux下的wget命令：
+          wget  ：下载工具。
+         下载基本的文件：可以直接：wget  -c  http://×××  或者wget -c   ftp://××
+参数：  wget  -c：continue 表示断点续传..
+                      -b ：background 后台成为进程运行。
+                      -O ：文件另存 ： 
+                      -i  ：下载后跟文件包含的链接。 wget  -c  -i  **.txt
+                      -t  尝试链接的次数， -t 0 无限次尝试
+                     --linit-rate 限制速度 wget  --linit-rate=200k  http://××
+ 更多基本命令参见 man
+备份某个网站镜像： wget:-k 转换成为本地的链接
+                                         -r 下载对应链接的内容。（默认是所有）
+                                          -np  不下载站外链接
+                                          -p下载网页需要的元素，css ，img等
+现在，基本可以用 ： wget -c  -k  -r  -np  -p  http://××× ， 还可以用命令 -m --mirror 来实现： wget  -c -m -p  http://××
+ 
+2、教你怎么保存好的网站，制作成chm，pdf，txt，epud
+
+    有时浏览网页时，发现一些较好的知识类网站，想保留下来，存个书签又不能很好保存，又不能离线查看，有时还会过期。所以最安全也最可靠的方式是把网站镜像下载，也就是所谓的把网站dowm下来，保存在本地，但是查看时也有诸多不便，因为每次又要找到主页（index），并且文件比较分散，不好管理而且不美观。 所以本文教你怎么保存网页，乃至整个网站
+
+    使用到的工具： wget （linux ，windows，mac、   windows下 winchm或者quickchm等，以上2个比较简单（或者使用官方的HTML  HELP  workshop，不过不推荐）好用，其他的还有很多epudbuilder ，就jotoh等，如要是转换pdf还需要Adobe Acrobat  ，我主要是在win下完成的。
+
+方法：
+
+    wget  : 凡是使用linux的肯定知道这个工具，大部分都用作下载工具其实它的功能远不止于此，可以来镜像网站，网站备份等windows下系统是没有这个工具的，但是可以通过其他的方法来使用这个工具。 以下载wget 的windows版本，http://gnuwin32.sourceforge.net/packages/wget.html还可以用 MinGw，cygwin等等win下的linux环境软件，可以随意安装一个，其实这两个的用途远不至于此。同时还可以使用其中的wget
+    XML/HTML代码
+        mkdir **（**为你要新建的目录，随意）  
+        cd **  
+        wget -m -L -k -p  http:// ****  
+        或者  
+        wget -r  -p -np  -k http:// ***(更详细的wget介绍可参见man   wget )  
+        以上命令是来down网页的  
+    下载后会有一个或多个目录，记住路径。然后运行以上的winchm或是quickchm制作chm文档，具体参见软件自身的详细介绍。
+    可以使用winchm的单html输出功能，可以制作出一个html文件。此时就可以使用Adobe Acrobat制作pdf文档，或是别的什么的，
+    使用epud或是jotoh等来装换chm到epud文档，或者也可以直接编辑html到epud文档

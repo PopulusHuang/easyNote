@@ -1,0 +1,213 @@
+一Boa在PC平台上开发环境的搭建
+
+ 
+
+STEP 1：
+
+# cd boa-0.94.13-i386/src
+
+# ./configure
+
+# make
+
+ 
+
+STEP 2：
+
+在/etc目录下建立一个boa目录，在里面放置Boa的主要配置文件boa.conf，可以从Boa-0.94.13-i386下拷贝，修改配置文件如下：
+
+Group nogroup 修改为 Group 0
+
+ScriptAlias /cgi-bin/ /usr/lib/cgi-bin 修改为 ScriptAlias /cgi-bin/ /var/www/cgi-bin
+
+其它采用默认设置。
+
+ 
+
+STEP 3：
+
+建立日志文件所在目录，/var/log/boa
+
+建立HTML文档所在目录，/var/www，将静态网页存入该目录（可将主机/usr/share/doc/HTML目录下的index.html文件和img目录复制到/var/www目录下）。
+
+建立CGI脚本所在目录/var/www/cgi-bin，将cgi脚本放在该目录下。
+
+ 
+
+STEP 4：测试
+
+将PC和虚拟机的IP设置在同一个网段上，同时关闭虚拟机和PC的防火墙。
+
+打开Windows的IE=>工具=>internet选项=>连接=>局域网设置=>取消代理服务器。
+
+在虚拟机上运行Boa程序，在Windows中打开IE，输入http://192.168.1.8，即打开/var/www/index.html。
+
+拷贝boa-0.94.13-i386/examples/cgi-test.cgi到/var/www/cgi-bin目录下，在Windows IE中输入http://192.168.1.8/cgi-bin/cgi-test.cgi，可打开Boa CGI test
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 二 Boa在ARM平台上的移植
+
+ 
+
+STEP 1：
+
+# cd boa-0.94.13-arm/src
+
+# ./configure
+
+修改Makefile文件，
+
+将CC=gcc改为CC=arm-linux-gcc
+
+将CPP = gcc –E 改为CPP=arm-linux-gcc –E
+
+ 
+
+#make（最好用2.95.3编译）
+
+在这一步用3.4.1和3.3.2交叉编译器时均出现如下错误：
+
+util.c: 100: 1: pasting “t” and “->” does not give a valid preprocessing token make: [util.o] Error1
+
+换成2.95.3交叉编译器后，编译通过。
+
+另一种解决办法是把compat.h中的 foo##->tm_gmtoff的##去掉。
+
+ 
+
+#arm-linux-strip boa    //去掉调试信息
+
+ 
+
+STEP 2：
+
+Boa需要在/etc目录下建立一个boa目录，里面放置Boa的主要配置文件boa.conf，Boa源码下已经有一个示例boa.conf，可以在其基础上修改，主要改动如下：
+
+Group nogroup 修改为 Group 0
+
+ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/ 修改为 ScriptAlias /cgi-bin/ /var/www/cgi-bin/
+
+ServerName www.sunplusedu.com    去掉这一行的注释，网址可任意。如不去掉这行的注释，会出现如下错误：
+
+gethostbyname:: Resource temporarily unavailable错误。
+
+ 
+
+STEP 3：
+
+创建日志文件所在目录/var/log/boa，创建HTML文档的主目录/var/www，将静态网页存入该目录下（可将主机/usr/share/doc/HTML/目录下的index.html文件和img目录复制到/var/www目录下）。
+
+创建CGI脚本所在目录/var/www/cgi-bin，将cgi的脚本存放在该目录下。
+
+另外还要将mime.types文件复制到/etc目录下，通常可以从Linux主机的/etc目录下直接复制即可。
+
+ 
+
+STEP 4：
+
+使用arm-linux-readelf命令可以查看所有可执行文件需要的库：
+
+# arm-linux-readelf  -a  可执行文件 |  grep  “Shared”
+
+ 
+
+我们需要来查看一下可执行文件boa需要的库：
+
+# arm-linux-readelf  -a  boa |  grep  “Shared”
+
+执行后，需要/lib/libc.so.6文件，而这个文件又是/lib/libc-2.3.2.so的链接文件，所以两个一起拷贝到文件系统的/usr/lib目录中
+
+烧写根文件系统。
+
+ 
+
+STEP 5：
+
+注意：在运行Boa前要，需要完成几个操作：
+
+（1）把/var/log/boa挂载上ramfs文件系统，使其可写，否则出现如下错误：
+
+log.c:73 – Unable to dup2 the error log: Bad file r.
+
+（2）#chmod  777  mime.types
+
+        #chmod  777  boa.conf
+
+建立目录/etc/boa，#mkdir /etc/boa
+
+将mime.types文件拷贝到/etc下，将boa.conf文件拷贝到/etc/boa目录下
+
+也可以写在启动脚本文件里：
+
+#profile
+
+cd /mnt/yaffs             //这个文件夹可写
+
+chmod  777  mime.types  boa.conf
+
+mkdir  /etc/boa     //原来建立的目录消失，所以要重新建立
+
+cp  /mnt/yaffs/boa.conf  /etc/boa
+
+cp  /mnt/yaffs/mime.types  /etc/
+
+mount  -t  ramfs  ramfs  /var/log/boa  //使这个文件夹可写
+
+ 
+
+ 
+
+STEP 6：
+
+CGI脚本测试
+
+书写下面的test.c测试程序，
+
+#include <stdio.h>
+
+#include <string.h>
+
+int main(void)
+
+{
+
+printf("Contenttype:text/html\n\n");
+
+printf("<html>\n");
+
+printf("<head><title>An HTML Page From a CGI</title></head>\n");
+
+printf("<body><br>\n");
+
+printf("<h2> This is an HTML page generated from with in a CGI program..</h2>\n");
+
+printf("<hr><p>\n");
+
+printf("<a href=\"output.html#two\"><b> Go back to out put.html page </b></a>\n"); printf("</body>\n");
+
+printf("</html>\n");
+
+fflush(stdout);
+
+}
+
+交叉编译生成test.cgi
+
+编译有动态编译和静态编译
+
+动态编译：# /usr/local/arm/2.95.3/bin/arm-linux-gcc -o test.cgi test.c
+
+静态编译：# /usr/local/arm/2.95.3/bin/arm-linux-gcc -o test.cgi test.c  -static
+
+将test.cgi拷贝至嵌入式板子的/var/www/cgi-bin/下，当在局域网PC的IE上输入 http:// 嵌入式板子的IP地址/cgi-bin/test.cgi
+
+可以显示出test.cgi的网页。
+
+ 在实验箱上运行Boa，在主机IE上输入http://192.168.1.10 或http://192.168.1.10/cig-bin/helloworld.cgi 可看到网页。

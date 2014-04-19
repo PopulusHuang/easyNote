@@ -1,0 +1,8 @@
+sudo add-apt-repository ppa:user/ppa-name
+example: add wine ppa
+$ sudo add-apt-repository ppa:ubuntu-wine/ppa
+$ sudo apt-get update
+$ sudo apt-get install wine 
+or you can use the next instead the previous one  
+$ suod apt-get install update 
+

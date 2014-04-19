@@ -1,0 +1,2 @@
+clear recently file step
+	System Settings-->Privacy

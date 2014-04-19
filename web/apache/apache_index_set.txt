@@ -1,0 +1,5 @@
+×定制自己的主页为login.html
+在httpd.conf中加入：
+<IfModule dir_module>
+    DirectoryIndex login.html
+</IfModule>

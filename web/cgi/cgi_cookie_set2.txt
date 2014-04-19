@@ -1,0 +1,41 @@
+c cgi cookie
+一、写cookie
+写cookie时，cookie信息应该在http header中，浏览器接收到http相应头，会自动保存cookie变量,比如：
+printf("Set－Cookie:name=value;path=/\r\n");
+path=/代表网站所有www资源都可以读取所设置的cookie。cookie的具体信息如果不了解，可以自己google一下。
+如果cookie中有多个变量，就多次输出。还有，c写cgi的时候，Set-Cookie应该写在Content-type之前，不然cookie设置不成功。
+一般情况，cookie只保存用户名，常用方法如下：
+首先有两个变量，1：用户名，user、2：网站全局cookie加密密码，psd。
+//下面我写些伪代码
+char *user="user";
+char *psd="123";
+char *user_psd;
+sprintf(user_psd,"%s%s",user,psd);//把user、psd拼接成一个字符串
+char *md5str=md5(user_psd);//做md5加密
+char *ul;
+sprintf(ul,"%s.%s",user,md5str);
+char *real_cookie=base64_encode(ul);//做base64编码。
+printf("Set-Cookie:user=%s;path=/\r\n",real_cookie);
+
+二、读cookie
+如果设置了cookie，那么下次访问本站点的时候，浏览器会自动把cookie信息放在http 请求头中，webserver会自动截取，并保存到环境变量中去。
+读cookie:
+char *cookie=getenv("HTTP-COOKIE");//把cookie信息全部取出。
+如果才用上面写cookie的方法，解析user内容：首先是base64解码，接下来以'.'分割字符串，截取user和后面的md5str,把user和网站全局的cookie加密密码拼接，做md5,如果结果串与md5str一样，说明这个cookie不是伪造的。
+
+三、注销cookie
+这个使用js就可以，也就是把user设为空即可。
+//js code:
+function Setcookie (name, value) {
+var argc = arguments.length;
+var argv = arguments;
+var path = (argc > 3) ? argv[3] : null;
+var domain = (argc > 4) ? argv[4] : null;
+var secure = (argc > 5) ? argv[5] : false;
+document.cookie = name + "=" + value +
+((path == null) ? "" : ("; path=" + path)) +
+((domain == null) ? "" : ("; domain=" + domain)) +
+((secure == true) ? "; secure" : "");
+}
+
+注销时调用这个js函数即可。
