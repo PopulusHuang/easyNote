@@ -1,0 +1,4 @@
+Push an existing repository from the command line
+eg.
+$git remote add origin https://github.com/PopulusHuang/easyNote.git
+$git push -u origin master
