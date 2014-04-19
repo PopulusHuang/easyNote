@@ -1,0 +1,14 @@
+Some of our developers installed Ubuntu 10.04 and they are experiencing slow remote operation specifically git fetch, pull and push. I first suspected an error in the git server setup using indefero but the other users on Ubuntu 9.04 did not have this problem.
+
+Investigating further, I found that using ssh to connect to the git server was also slow which could be the cause of the problem. To find out what happens during ssh connection I did:
+
+ssh -v git@git-server
+
+This revealed that ssh was spending a lot of time on using gssapi-with-mic.
+To turn this off, I modified the file /etc/ssh/ssh_config to add
+
+GSSAPIAuthentication no
+
+Sure enough, the git operations improved and it has now stopped becoming a chore to do git fetch, pull and push.
+
+I hope you found the post useful. You can subscribe via email or subscribe via a feed reader to get relevant updates from this blog. Have a nice day.
