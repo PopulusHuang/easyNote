@@ -1,0 +1,3 @@
+恢复默认登录界面:
+* 运行sudo vi /etc/X11/default-display-manager 
+* 修改/usr/bin/xdm为/usr/bin/lightdm,保存重启，回到了默认登录窗口。
