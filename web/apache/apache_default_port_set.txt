@@ -1,0 +1,21 @@
+Ubuntu 修改 Apache 的默认端口号
+
+Ubuntu 里安装的 Apache 修改端口号 :
+
+执行 
+
+sudo chmod -R 777 /etc/apache2
+
+sudo chmod -R 777 /etc/apache2/sites-availabel
+
+获得 apache 和 sites-availabel 两个文件夹的 写权限
+
+startx  -- 命令 , 进入 Ubuntu 的桌面 ,
+
+打开 etc/apache2 , 并对 ports.conf 进行修改 , 把 NameVirtualHost  *:80  给改成 8002[这里我想设置 Apache 为 8002 端口] , Listen 80 改成 Listen  8002 跟 NameVirtualHost 后面的端口号一致 。
+
+打开  etc/apache2/sites-availabel  并对  default.conf  进行修改 , 把 <VirtualHost *:80>  给改成  <VirtualHost *:8002>
+
+ 
+
+保存以后 , 退出到 Ubuntu 的命令窗口 , 执行  sudo /etc/init.d/apache2 restart  重启 Apach2   , Apache 的端口号就被改成了 8002 
