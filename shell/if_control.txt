@@ -1,0 +1,54 @@
+一. if的基本语法
+1. if与[之间要有空格
+2. []与判断条件之间也必须有空格
+3. ]与;之间不能有空格
+4.位置参数
+    *    $0 ：即命令本身，相当于C/C++中的argv[0]
+    *    $1 ：第一个参数.
+    *    $2, $3, $4 ... ：第2、3、4个参数，依次类推。
+    *    $#  参数的个数，不包括命令本身
+    *    $@ ：参数本身的列表，也不包括命令本身
+    *    $* ：和$@相同，但"$*" 和 "$@"(加引号)并不同，"$*"将所有的参数解释成一个字符串，而"$@"是一个参数数组。
+二. 对字符串的判断
+1. if [ str1=str2 ];then fi #当两个字符串相同时返回真
+2. if [ str1!=str2 ];then fi #当两个字符串不相等时返回真
+3. if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)
+4. if [ -z str1 ];then fi #当字符串的长度为0时返回真
+
+三. 对数字的判断
+1. int1 -eq int2 #int1和int2相等
+2. int1 -ne int2 #int1不相等int2
+3. int1 -gt int2 #int1大于int2
+4. int1 -ge int2 #int1大于等于int2
+5. int1 -lt int2 #int1小于int2
+6. int1 -le int2 #int1小于等于int2
+
+四. 对文件属性的判断
+1. -r file #用户可读为真
+2. -w file #用户可写为真
+3. -x file #用户可执行为真
+4. -f file #文件存在且为正规文件为真
+5. -d file #如果是存在目录为真
+6. -c file #文件存在且为字符设备文件
+7. -b file #文件存在且为块设备文件
+8. -s file #文件大小为非0为真，可以判断文件是否为空
+9. -e file #如果文件存在为真
+
+五. 逻辑判断
+1. -a #与
+2. -o #或
+3. ! #非
+
+Example
+#!/bin/sh
+SYSTEM=`uname -s`    #获取操作系统类型，我本地是linux
+if [ $SYSTEM = "Linux" ] ; then     #如果是linux的话打印linux字符串
+echo "Linux" 
+elif [ $SYSTEM = "FreeBSD" ] ; then   
+echo "FreeBSD" 
+elif [ $SYSTEM = "Solaris" ] ; then 
+echo "Solaris" 
+else 
+echo "What?" 
+fi     #ifend
+
