@@ -1,0 +1,5 @@
+1. Install sqlite3 software
+ sudo apt-get install sqlite3
+2. Install sqlite3 libraries for program
+ sudo apt-get install libsqlite3 libsqlite3-dev  
+
