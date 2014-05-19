@@ -1,0 +1,18 @@
+While using git with https, sometimes, in someplace, I encounter like this error:
+
+Initialized empty Git repository in /xxxx/xxxx/.git/
+Password: 
+error: server certificate verification failed. 
+CAfile: /etc/ssl/certs/ca-certificates.crt 
+CRLfile: none while accessing https://xxxx@xxxx.xxxx/xxxx/xxxx.git/info/refs
+
+fatal: HTTP request failed
+
+It might be a bug from Ubuntu¡¯s git, but I¡¯m not sure at this time.
+
+For workaround of it, set GIT_SSL_NO_VERIFY=1 in environment variables in the shell.
+
+export GIT_SSL_NO_VERIFY=1
+
+Then it works!
+
