@@ -64,5 +64,8 @@ select * from test;
 .output stdout 返回输出到屏幕(进行其他操作)
 
 （4）导入（恢复）数据库
-sqlite3 test.db < test.sql
+a.sqlite3 test.db < test.sql
 这样就将备份数据库导入当前数据库了。
+(5)执行sql文件
+sqlite>.read test.sql
+
