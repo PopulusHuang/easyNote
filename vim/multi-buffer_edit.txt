@@ -1,0 +1,54 @@
+多文件操作
+
+1、用vi同时打开多个文件
+     vi 1.text 2.text 3.text
+------------------------------------------------------------------
+2、多文件切换命令
+    :args  显示当前编辑文件
+    :next  切换到下个文件
+    :prev  切换到前个文件
+    :next！不保存当前编辑文件并切换到下个文件
+    :prev！不保存当前编辑文件并切换到上个文件
+-------------------------------------------------------------------
+3、定位首文件和尾文件
+    :first   定位首文件
+    :last    定位尾文件
+------------------------------------------------------------------
+4、快速文件切换
+     ctrl+^  快速在最近打开的两个文件间切换
+
+ 
+
+ 
+
+多窗口操作
+
+vi -o file1.txt file2.txt   # 水平分割
+vi -O file1.txt file2.txt   # 垂直分割
+
+:split[sp]                        # 把当前文件水平分割
+:split another-file      # 把当前窗口水平分割, 并装入another-file
+:vsplit[vsp] another-file    # 把当前窗口垂直分割, 并装入another-file
+:new another-file      # 同 ":split another-file"
+
+:close                 # 关闭当前窗口
+:only                  # 只显示当前窗口, 关闭所有其他的窗口
+:all                     # 打开所有的窗口
+:vertical all         # 打开所有的窗口, 垂直打开
+
+:buffers              # 列出所有的当前窗口
+:buffer 2             # 编辑第二个窗口
+
+:bd                     #关闭buffer
+:bw                    #彻底关闭buffer
+
+ 
+
+VIM7多TAB页操作
+
+:tabnew [++opt选项] ［＋cmd］ 文件            建立对指定文件新的tab
+:tabc       关闭当前的tab
+:tabo       关闭所有其他的tab
+:tabs       查看所有打开的tab
+:tabp      前一个
+:tabn      后一个
