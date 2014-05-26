@@ -1,0 +1,6 @@
+$git reflog
+After that you can get the id of this commit like 1d84d08
+do:
+$git checkout master 
+$git merge 1d84d08
+
