@@ -1,0 +1,15 @@
+调用另一个python文件中的代码
+
+同一文件夹情况下
+
+import a
+
+a.funcA()
+
+不同文件夹的话要
+
+import sys
+sys.path.insert('a.py所在的路径')
+import a
+
+a.funcA()

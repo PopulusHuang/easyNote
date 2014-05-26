@@ -1,0 +1,65 @@
+Apache配置之：cgi脚本（Shell、Python、Php）
+
+    今天在配置 Apache + Python（cgi）时，发现Cgi没有任何语言限制，即使使用Shell脚本也行。
+
+    废话少说，配置如下（httpd.conf 对应片段）：
+<IfModule alias_module>
+    ScriptAlias /cgi-bin/ "/usr/local/apache/cgi-bin/"
+</IfModule>
+
+<Directory "/usr/local/apache/cgi-bin">
+    AllowOverride None
+    Options Indexes MultiViews FollowSymLinks ExecCGI
+    Order allow,deny
+    Allow from all
+</Directory>
+
+AddHandler cgi-script .cgi .py .sh .php
+
+好，这个时候重启一下你的Apache：
+killall -9 httpd
+/usr/local/apache/bin/apachectl -k start
+
+编写Shell脚本到Cgi目录：
+#!/bin/bash
+# File: /usr/local/apache/cgi-bin/bash.sh
+echo -e "Content-type: text/html;charset=utf-8\n\n"
+echo CGI/1.0 test script report:$(uuidgen)'<br>'
+
+echo argc is $#. argv is "$*".'<br>'
+
+echo SERVER_SOFTWARE = $SERVER_SOFTWARE '<br>'
+echo SERVER_NAME = $SERVER_NAME '<br>'
+echo GATEWAY_INTERFACE = $GATEWAY_INTERFACE '<br>'
+echo SERVER_PROTOCOL = $SERVER_PROTOCOL '<br>'
+echo SERVER_PORT = $SERVER_PORT '<br>'
+echo REQUEST_METHOD = $REQUEST_METHOD '<br>'
+echo HTTP_ACCEPT = "$HTTP_ACCEPT" '<br>'
+echo PATH_INFO = "$PATH_INFO" '<br>'
+echo PATH_TRANSLATED = "$PATH_TRANSLATED" '<br>'
+echo SCRIPT_NAME = "$SCRIPT_NAME" '<br>'
+echo QUERY_STRING = "$QUERY_STRING" '<br>'
+echo REMOTE_HOST = $REMOTE_HOST '<br>'
+echo REMOTE_ADDR = $REMOTE_ADDR '<br>'
+echo REMOTE_USER = $REMOTE_USER '<br>'
+echo AUTH_TYPE = $AUTH_TYPE '<br>'
+echo CONTENT_TYPE = $CONTENT_TYPE '<br>'
+echo CONTENT_LENGTH = $CONTENT_LENGTH
+
+同理，可以生成Python脚本到Cgi目录：
+#!/usr/bin/python2.5
+# File:/usr/local/apache/cgi-bin/python.py
+# -*- coding: utf-8 -*-
+print "Content-type: text/html;charset=utf-8\n\n"
+print 'Hello World!'
+
+再演示一个PHP版本吧：
+#!/usr/local/php/bin/php -q
+# File: File:/usr/local/apache/cgi-bin/i.php
+<?php
+    phpinfo();
+?>
+
+好了，这个时候你就可以放心访问了！
+
+http://127.0.0.1/cgi-bin/bash.sh
